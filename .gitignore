@@ -8,4 +8,4 @@ jspm_packages
 # Optional npm cache directory
 .npm
 
-app/style/sass-transpile.bat
+*.bat
