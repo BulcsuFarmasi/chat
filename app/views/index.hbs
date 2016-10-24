@@ -1,0 +1,10 @@
+<div class="chat-window">
+	{{#each messages}}
+	<p>{{this.date}} <strong>{{this.nick}}</strong>: {{this.message}}</p>
+	{{/each}}
+</div>
+<p><input tpye="text" id="nickname" name="nickname" class="input-text" /></p>
+<p><input tpye="text" id="message" name="message" class="input-text" /></p>
+<p>
+<button>Elküld</button>
+</p>

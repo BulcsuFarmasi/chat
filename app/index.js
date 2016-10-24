@@ -1,6 +1,7 @@
 const path=require('path');
 const express=require('express');
 const exphbs=require('express-handlebars');
+var MongoClient=require('mongodb').MongoClient;
 
 const app=express();
 
@@ -15,8 +16,20 @@ app.set('views',path.join(__dirname,'views'));
 
 app.use(express.static('public'));
 
+
+
+
 app.get('/',(req,res) => {
-	res.render('index');
+	var url='mongodb://localhost:27017/chat';
+	MongoClient.connect(url,function(err,db){
+		var collection=db.collection('messages');
+		collection.find({}).toArray(function(err,docs){
+			var data={};
+			data.messages=docs;
+			res.render('index',data);
+		})
+		db.close();
+	})
 })
 
 app.listen(3000);
